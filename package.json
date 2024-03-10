@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/Notification-Engine/rn-notification-engine#readme",
   "exports": {
-    "./utils": "./utils/index.js"
+    "./utils": "./utils/index.js",
+    "./clients": "./clients/index.js"
   }
 }
