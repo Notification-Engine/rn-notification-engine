@@ -1,0 +1,28 @@
+{
+  "name": "rn-notification-engine",
+  "version": "1.0.0",
+  "description": "A react native notifier engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Notification-Engine/rn-notification-engine.git"
+  },
+  "keywords": [
+    "notification",
+    "notify",
+    "notifier",
+    "react",
+    "native",
+    "notification",
+    "firebase"
+  ],
+  "author": "Amrit Saha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Notification-Engine/rn-notification-engine/issues"
+  },
+  "homepage": "https://github.com/Notification-Engine/rn-notification-engine#readme"
+}
