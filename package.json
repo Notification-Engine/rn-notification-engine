@@ -24,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/Notification-Engine/rn-notification-engine/issues"
   },
-  "homepage": "https://github.com/Notification-Engine/rn-notification-engine#readme"
+  "homepage": "https://github.com/Notification-Engine/rn-notification-engine#readme",
+  "exports": {
+    "./utils": "./utils/index.js",
+    "./clients": "./clients/index.js",
+    "./components": "./components/index.js",
+    "./screens": "./screens/index.js"
+  }
 }
