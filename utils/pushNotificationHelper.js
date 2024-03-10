@@ -7,6 +7,10 @@ const requestUserPermission = async () => {
 }
 
 const getFCMToken = async () => {
+    const hasToken = await mmkvStorage.contains("fcmToken");
+    if (hasToken) {
+        return await mmkvStorage.getString("fcmToken")
+    }
     const fcmToken = await messaging().getToken();
     await mmkvStorage.set('fcmToken', fcmToken);
     return fcmToken;
