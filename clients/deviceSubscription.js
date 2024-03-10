@@ -1,20 +1,21 @@
 import DeviceInfo from "react-native-device-info";
+import { getApplicationId } from "../utils/appUtils";
 import { getFCMToken } from "../utils/pushNotificationHelper";
 
 const ONBOARDING_HOST_URI = 'http://localhost:8000';
 const DEVICE_MANAGER_ENDPOINT = '/device';
 const DEVICE_SUBSCRIPTIONS_ENDPOINT = '/device-subscriptions';
-const APP_ID = 'e5acb634-5765-4135-a54a-57725955178f';
 
 export const checkOrSubscribeDevice = async () => {
     const uri = ONBOARDING_HOST_URI + DEVICE_MANAGER_ENDPOINT;
     const fcmToken = await getFCMToken();
     const deviceId = await DeviceInfo.getUniqueId();
+    const appId = await getApplicationId();
     const response = await fetch(uri, {
         method: 'POST',
         body: JSON.stringify({
             deviceId: deviceId,
-            appId: APP_ID,
+            appId: appId,
             fcmToken: fcmToken,
         })
     }).then(response => {
@@ -27,10 +28,11 @@ export const checkOrSubscribeDevice = async () => {
 export const getDeviceSubscriptions = async (callback) => {
     const uri = ONBOARDING_HOST_URI + DEVICE_SUBSCRIPTIONS_ENDPOINT;
     const fcmToken = await getFCMToken();
+    const appId = await getApplicationId();
     const response = await fetch(uri, {
         method: 'GET',
         headers: {
-            appId: APP_ID,
+            appId: appId,
             fcmToken: fcmToken,
         }
     });
@@ -42,10 +44,11 @@ export const getDeviceSubscriptions = async (callback) => {
 export const updateDeviceSubscriptions = async (subscriptionId, subscriptionStatus, callback) => {
     const uri = ONBOARDING_HOST_URI + DEVICE_SUBSCRIPTIONS_ENDPOINT;
     const fcmToken = await getFCMToken();
+    const appId = await getApplicationId();
     const response = await fetch(uri, {
         method: 'PUT',
         body: JSON.stringify({
-            appId: APP_ID,
+            appId: appId,
             fcmToken: fcmToken,
             subscriptionId: subscriptionId,
             subscriptionStatus: subscriptionStatus,
