@@ -1,5 +1,5 @@
 import DeviceInfo from "react-native-device-info";
-import { mmkvStorage } from "../utils/mmkvStorage";
+import { getFCMToken } from "../utils/pushNotificationHelper";
 
 const ONBOARDING_HOST_URI = 'http://localhost:8000';
 const DEVICE_MANAGER_ENDPOINT = '/device';
@@ -8,7 +8,7 @@ const APP_ID = 'e5acb634-5765-4135-a54a-57725955178f';
 
 export const checkOrSubscribeDevice = async () => {
     const uri = ONBOARDING_HOST_URI + DEVICE_MANAGER_ENDPOINT;
-    const fcmToken = mmkvStorage.getString('fcmToken');
+    const fcmToken = await getFCMToken();
     const deviceId = await DeviceInfo.getUniqueId();
     const response = await fetch(uri, {
         method: 'POST',
@@ -26,7 +26,7 @@ export const checkOrSubscribeDevice = async () => {
 
 export const getDeviceSubscriptions = async (callback) => {
     const uri = ONBOARDING_HOST_URI + DEVICE_SUBSCRIPTIONS_ENDPOINT;
-    const fcmToken = mmkvStorage.getString('fcmToken');
+    const fcmToken = await getFCMToken();
     const response = await fetch(uri, {
         method: 'GET',
         headers: {
@@ -41,7 +41,7 @@ export const getDeviceSubscriptions = async (callback) => {
 
 export const updateDeviceSubscriptions = async (subscriptionId, subscriptionStatus, callback) => {
     const uri = ONBOARDING_HOST_URI + DEVICE_SUBSCRIPTIONS_ENDPOINT;
-    const fcmToken = mmkvStorage.getString('fcmToken');
+    const fcmToken = await getFCMToken();
     const response = await fetch(uri, {
         method: 'PUT',
         body: JSON.stringify({
